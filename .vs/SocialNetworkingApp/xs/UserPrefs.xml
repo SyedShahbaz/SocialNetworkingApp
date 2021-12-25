@@ -1,0 +1,25 @@
+﻿<Properties StartupConfiguration="{0000FE14-75CB-408C-BD1C-FCA0C417DAA5}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SocialNetworkingApp/.gitignore">
+    <Files>
+      <File FileName="SocialNetworkingApp/.gitignore" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SocialNetworkingApp" expanded="True">
+            <Node name="SocialNetworkingApp" expanded="True">
+              <Node name=".gitignore" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.SocialNetworkingApp PreferredExecutionTarget="/Applications/Google Chrome 2.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
