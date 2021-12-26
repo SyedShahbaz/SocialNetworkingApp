@@ -1,25 +1,33 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SocialNetworkingApp.Data;
 
 namespace SocialNetworkingApp
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        private readonly IConfiguration _config;
 
-        public IConfiguration Configuration { get; }
+        public Startup(IConfiguration config)
+        {
+            _config = config;
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DataContext>(options =>
+            {
+                options.UseSqlite(_config.GetConnectionString("DefaultConnection"));
+            });
+
+            // services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("TodoList"));
+
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

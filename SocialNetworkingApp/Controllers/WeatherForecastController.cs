@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SocialNetworkingApp.Data;
 
 namespace SocialNetworkingApp.Controllers
 {
@@ -26,6 +26,7 @@ namespace SocialNetworkingApp.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
