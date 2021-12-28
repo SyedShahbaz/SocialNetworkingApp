@@ -29,6 +29,7 @@ namespace SocialNetworkingApp
             // services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("TodoList"));
 
             services.AddControllersWithViews();
+            services.AddCors();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -58,6 +59,11 @@ namespace SocialNetworkingApp
             }
 
             app.UseRouting();
+
+            // Add Cors in between Routing and Authorization
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod());
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
