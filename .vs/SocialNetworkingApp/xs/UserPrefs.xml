@@ -1,22 +1,18 @@
 ﻿<Properties StartupConfiguration="{0000FE14-75CB-408C-BD1C-FCA0C417DAA5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SocialNetworkingApp/Extensions/ApplicationServiceExtensions.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SocialNetworkingApp/Extensions/IdentityServiceExtensions.cs">
     <Files>
-      <File FileName="SocialNetworkingApp/Controllers/AccountController.cs" Line="76" Column="15" />
-      <File FileName="SocialNetworkingApp/Services/TokenService.cs" Line="30" Column="22" />
-      <File FileName="SocialNetworkingApp/DTOs/UserDto.cs" Line="3" Column="25" />
-      <File FileName="SocialNetworkingApp/appsettings.json" Line="6" Column="15" />
-      <File FileName="SocialNetworkingApp/Controllers/UsersController.cs" Line="21" Column="24" />
-      <File FileName="SocialNetworkingApp/Startup.cs" Line="48" Column="109" />
-      <File FileName="SocialNetworkingApp/Extensions/ApplicationServiceExtensions.cs" Line="1" Column="1" />
-      <File FileName="SocialNetworkingApp/Extensions/IdentityServiceExtensions.cs" Line="1" Column="1" />
+      <File FileName="SocialNetworkingApp/Startup.cs" Line="1" Column="1" />
+      <File FileName="SocialNetworkingApp/Extensions/ApplicationServiceExtensions.cs" Line="24" Column="2" />
+      <File FileName="SocialNetworkingApp/Extensions/IdentityServiceExtensions.cs" Line="23" Column="23" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SocialNetworkingApp" expanded="True">
             <Node name="SocialNetworkingApp" expanded="True">
+              <Node name="Controllers" expanded="True" />
               <Node name="Extensions" expanded="True">
-                <Node name="ApplicationServiceExtensions.cs" selected="True" />
+                <Node name="IdentityServiceExtensions.cs" selected="True" />
               </Node>
             </Node>
           </Node>
