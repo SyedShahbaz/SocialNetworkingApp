@@ -29,12 +29,13 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.0.7" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.9" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Content Remove="$(SpaRoot)**" />
-    <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
     <None Remove="Entities\" />
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
@@ -46,11 +47,21 @@
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
     <None Remove="SQLitePCLRaw.bundle_green" />
+    <None Remove="DTO\" />
+    <None Remove="Interfaces\" />
+    <None Remove="Services\" />
+    <None Remove="System.IdentityModel.Tokens.Jwt" />
+    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <None Remove="Extensions\" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Data\" />
+    <Folder Include="DTOs\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Services\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
