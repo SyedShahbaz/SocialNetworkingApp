@@ -17,6 +17,7 @@ export class NavMenuComponent implements OnInit {
 
   constructor(private accountService: AccountService) {}
   ngOnInit(): void {
+    console.log("Calling from nav user is " + this.accountService.currentUser);
     this.currentUser = this.accountService.currentUser;
   }
 

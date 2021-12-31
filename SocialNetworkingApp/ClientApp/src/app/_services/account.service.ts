@@ -29,6 +29,20 @@ export class AccountService {
     );
   }
 
+  register(model: any) {
+    // Doing this we only return from the upper block.
+    // We are not returning the user here.
+    // Todo so return user from inside the map funtion.
+    return this.http.post(this.baseUrl + "account/register", model).pipe(
+      map((user: User) => {
+        if (user) {
+          localStorage.setItem("user", JSON.stringify(user));
+          this.currentUserSource.next(user);
+        }
+      })
+    );
+  }
+
   setCurrentUser(user: User) {
     this.currentUserSource.next(user);
   }
