@@ -1,99 +1,158 @@
-<header>
-  <nav
-    class="
-      navbar navbar-expand-sm navbar-toggleable-sm navbar-light
-      bg-white
-      border-bottom
-      box-shadow
-      mb-3
-    "
-  >
-    <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">SocialApp</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded"
-        (click)="toggle()"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex"
-        [ngClass]="{ show: isExpanded }"
-      >
-        <ul *ngIf="currentUser | async" class="navbar-nav flex-grow">
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
+<!-- <nav
+  class="
+    navbar navbar-expand-sm navbar-toggleable-sm navbar-light
+    bg-white
+    border-bottom
+    box-shadow
+    mb-3
+  "
+>
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/']" routerLink="active"
+      >SocialApp</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target=".navbar-collapse"
+      aria-label="Toggle navigation"
+      [attr.aria-expanded]="isExpanded"
+      (click)="toggle()"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="navbar-collapse collapse d-sm-inline-flex"
+      [ngClass]="{ show: isExpanded }"
+    >
+      <ul *ngIf="currentUser | async" class="navbar-nav flex-grow">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/members']" routerLink="active"
+            >Matches</a
           >
-            <a class="nav-link text-dark" [routerLink]="['/']">Matches</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']">Lists</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Messages</a
-            >
-          </li>
-        </ul>
-
-        <!-- <div class="dropdown" *ngIf="loggedIn">
-          <a class="dropdown-toggle text-light">Welcome user</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item">Edit Profile </a>
-            <a class="dropdown-item" (click)="logout()">Logout </a>
-          </div>
-        </div> -->
-
-        <div class="login-div" dropdown *ngIf="currentUser | async">
-          <button
-            class="btn btn-outline-success my-2 my-sm-0"
-            [matMenuTriggerFor]="menu"
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/lists']" routerLink="active"
+            >Lists</a
           >
-            <mat-icon aria-hidden="false" aria-label="Example home icon"
-              >home</mat-icon
-            >
-            Welcome User
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/messages']" routerLink="active"
+            >Messages</a
+          >
+        </li>
+      </ul>
+
+      <div class="login-div" dropdown *ngIf="currentUser | async">
+        <button
+          class="btn btn-outline-success my-2 my-sm-0"
+          [matMenuTriggerFor]="menu"
+        >
+          <mat-icon aria-hidden="false" aria-label="Example home icon"
+            >home</mat-icon
+          >
+          Welcome User
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Edit Profile</button>
+          <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+      </div>
+
+      <div *ngIf="(currentUser | async) === null" class="login-div">
+        <form
+          #loginForm="ngForm"
+          (ngSubmit)="login()"
+          autocomplete="off"
+          class="form-inline mt-2 mt-md-0 justify-content-end"
+        >
+          <input
+            name="username"
+            [(ngModel)]="model.username"
+            class="form-control mr-sm-2"
+            type="text"
+            placeholder="Username"
+          />
+          <input
+            name="password"
+            [(ngModel)]="model.password"
+            class="form-control mr-sm-2"
+            type="password"
+            placeholder="Password"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Login
           </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item>Edit Profile</button>
-            <button mat-menu-item (click)="logout()">Logout</button>
-          </mat-menu>
-        </div>
-
-        <div *ngIf="(currentUser | async) === null" class="login-div">
-          <form
-            #loginForm="ngForm"
-            (ngSubmit)="login()"
-            autocomplete="off"
-            class="form-inline mt-2 mt-md-0 justify-content-end"
-          >
-            <input
-              name="username"
-              [(ngModel)]="model.username"
-              class="form-control mr-sm-2"
-              type="text"
-              placeholder="Username"
-            />
-            <input
-              name="password"
-              [(ngModel)]="model.password"
-              class="form-control mr-sm-2"
-              type="password"
-              placeholder="Password"
-            />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-              Login
-            </button>
-          </form>
-        </div>
+        </form>
       </div>
     </div>
-  </nav>
-</header>
+  </div>
+</nav> -->
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">SocialApp</a>
+
+    <ul class="navbar-nav mr-auto" *ngIf="currentUser | async">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/members" routerLinkActive="active"
+          >Matches</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/lists" routerLinkActive="active"
+          >lists</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/messages" routerLinkActive="active"
+          >Messages</a
+        >
+      </li>
+    </ul>
+
+    <div class="login-div" dropdown *ngIf="currentUser | async">
+      <button
+        class="btn btn-outline-success my-2 my-sm-0"
+        [matMenuTriggerFor]="menu"
+      >
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >home</mat-icon
+        >
+        Welcome User
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Edit Profile</button>
+        <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
+    </div>
+
+    <div *ngIf="(currentUser | async) === null" class="login-div">
+      <form
+        #loginForm="ngForm"
+        (ngSubmit)="login()"
+        autocomplete="off"
+        class="form-inline mt-2 mt-md-0 justify-content-end"
+      >
+        <input
+          name="username"
+          [(ngModel)]="model.username"
+          class="form-control mr-sm-2"
+          type="text"
+          placeholder="Username"
+        />
+        <input
+          name="password"
+          [(ngModel)]="model.password"
+          class="form-control mr-sm-2"
+          type="password"
+          placeholder="Password"
+        />
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>
