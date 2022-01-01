@@ -53,6 +53,8 @@
     <None Remove="System.IdentityModel.Tokens.Jwt" />
     <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
     <None Remove="Extensions\" />
+    <None Remove="Errors\" />
+    <None Remove="Middleware\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -62,6 +64,8 @@
     <Folder Include="Interfaces\" />
     <Folder Include="Services\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Errors\" />
+    <Folder Include="Middleware\" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->

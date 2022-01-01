@@ -1,9 +1,12 @@
 ﻿<Properties StartupConfiguration="{0000FE14-75CB-408C-BD1C-FCA0C417DAA5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SocialNetworkingApp/Extensions/IdentityServiceExtensions.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SocialNetworkingApp/Program.cs">
     <Files>
-      <File FileName="SocialNetworkingApp/Startup.cs" Line="1" Column="1" />
-      <File FileName="SocialNetworkingApp/Extensions/ApplicationServiceExtensions.cs" Line="24" Column="2" />
-      <File FileName="SocialNetworkingApp/Extensions/IdentityServiceExtensions.cs" Line="23" Column="23" />
+      <File FileName="SocialNetworkingApp/Errors/ApiException.cs" Line="14" Column="1" />
+      <File FileName="SocialNetworkingApp/Middleware/ExceptionMiddleware.cs" Line="50" Column="1" />
+      <File FileName="SocialNetworkingApp/Startup.cs" Line="43" Column="13" />
+      <File FileName="SocialNetworkingApp/Controllers/BuggyController.cs" Line="42" Column="1" />
+      <File FileName="SocialNetworkingApp/Controllers/AccountController.cs" Line="1" Column="1" />
+      <File FileName="SocialNetworkingApp/Program.cs" Line="16" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -11,9 +14,9 @@
           <Node name="SocialNetworkingApp" expanded="True">
             <Node name="SocialNetworkingApp" expanded="True">
               <Node name="Controllers" expanded="True" />
-              <Node name="Extensions" expanded="True">
-                <Node name="IdentityServiceExtensions.cs" selected="True" />
-              </Node>
+              <Node name="Errors" expanded="True" />
+              <Node name="Middleware" expanded="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>

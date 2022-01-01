@@ -1,0 +1,20 @@
+<h4>Internal server error- Please refresh the page</h4>
+
+<div *ngIf="error">
+  <h5 class="text-danger">Error: {{ error.message }}</h5>
+  <p class="font-weight-bold">Note: Angular cannot be blamed</p>
+  <p>What to do</p>
+  <ol>
+    <li>Open chrome dev tool</li>
+    <li>Inspect network tab</li>
+    <li>Check failing request</li>
+    <li>Examine URL request - Make sure it's correct</li>
+    <li>
+      Reproduce the error in post man- that means issue is not wuth Angular
+    </li>
+  </ol>
+  <p>Follwing is stack trace</p>
+  <code class="mt-5" style="background-color: whitesmoke">{{
+    errorTrace
+  }}</code>
+</div>

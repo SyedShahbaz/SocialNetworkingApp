@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatIconModule } from "@angular/material/icon";
@@ -17,9 +17,12 @@ import { ListsComponent } from "./lists/lists.component";
 import { MessagesComponent } from "./messages/messages.component";
 import { MemberListComponent } from "./members/member-list/member-list.component";
 import { MemberDetailComponent } from "./members/member-detail/member-detail.component";
-import { ToastrModule } from "ngx-toastr";
 import { AuthGuard } from "./_guards/auth.guard";
 import { SharedModule } from "./_modules/shared.module";
+import { TestErrorsComponent } from "./errors/test-errors/test-errors.component";
+import { ErrorInterceptor } from "./_interceptors/error.interceptor";
+import { NotFoundComponent } from "./errors/not-found/not-found.component";
+import { ServerErrorComponent } from "./errors/server-error/server-error.component";
 
 @NgModule({
   declarations: [
@@ -31,9 +34,11 @@ import { SharedModule } from "./_modules/shared.module";
     RegisterComponent,
     ListsComponent,
     MessagesComponent,
+    ServerErrorComponent,
+    TestErrorsComponent,
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
+    BrowserModule,
     HttpClientModule,
     FormsModule,
     MatMenuModule,
@@ -53,12 +58,17 @@ import { SharedModule } from "./_modules/shared.module";
           { path: "messages", component: MessagesComponent },
         ],
       },
+      { path: "errors", component: TestErrorsComponent },
+      { path: "not-found", component: NotFoundComponent },
+      { path: "server-error", component: ServerErrorComponent },
       { path: "**", component: HomeComponent, pathMatch: "full" },
     ]),
     BrowserAnimationsModule,
     SharedModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

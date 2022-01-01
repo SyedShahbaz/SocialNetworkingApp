@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SocialNetworkingApp.Extensions;
+using SocialNetworkingApp.Middleware;
 
 namespace SocialNetworkingApp
 {
@@ -35,7 +36,13 @@ namespace SocialNetworkingApp
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            // This middleware comes at the top. If we dont have an exception handling at the below configuration
+            // the exceptions from them will be thrown towards the top.
+
+
+            app.UseMiddleware<ExceptionMiddleware>();
+
+            /*if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -44,7 +51,7 @@ namespace SocialNetworkingApp
                 app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
-            }
+            }*/
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
