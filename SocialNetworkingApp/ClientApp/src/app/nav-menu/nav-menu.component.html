@@ -94,25 +94,31 @@
   <div class="container">
     <a class="navbar-brand" routerLink="/">SocialApp</a>
 
-    <ul class="navbar-nav mr-auto" *ngIf="currentUser | async">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/members" routerLinkActive="active"
-          >Matches</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/lists" routerLinkActive="active"
-          >lists</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/messages" routerLinkActive="active"
-          >Messages</a
-        >
-      </li>
+    <ul class="navbar-nav mr-auto">
+      <ng-container *ngIf="currentUser | async">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/members" routerLinkActive="active"
+            >Matches</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/lists" routerLinkActive="active"
+            >lists</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/messages" routerLinkActive="active"
+            >Messages</a
+          >
+        </li>
+      </ng-container>
     </ul>
 
-    <div class="login-div" dropdown *ngIf="currentUser | async">
+    <div
+      class="login-div"
+      dropdown
+      *ngIf="accountService.currentUser | async as userT"
+    >
       <button
         class="btn btn-outline-success my-2 my-sm-0"
         [matMenuTriggerFor]="menu"
@@ -120,7 +126,7 @@
         <mat-icon aria-hidden="false" aria-label="Example home icon"
           >home</mat-icon
         >
-        Welcome User
+        Welcome {{ userT.username }}
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item>Edit Profile</button>

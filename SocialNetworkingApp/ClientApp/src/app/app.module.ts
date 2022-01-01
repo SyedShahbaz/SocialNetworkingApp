@@ -17,6 +17,9 @@ import { ListsComponent } from "./lists/lists.component";
 import { MessagesComponent } from "./messages/messages.component";
 import { MemberListComponent } from "./members/member-list/member-list.component";
 import { MemberDetailComponent } from "./members/member-detail/member-detail.component";
+import { ToastrModule } from "ngx-toastr";
+import { AuthGuard } from "./_guards/auth.guard";
+import { SharedModule } from "./_modules/shared.module";
 
 @NgModule({
   declarations: [
@@ -39,13 +42,21 @@ import { MemberDetailComponent } from "./members/member-detail/member-detail.com
       { path: "", component: HomeComponent, pathMatch: "full" },
       { path: "counter", component: CounterComponent },
       { path: "fetch-data", component: FetchDataComponent },
-      { path: "members", component: MemberListComponent },
-      { path: "members/:id", component: MemberDetailComponent },
-      { path: "lists", component: ListsComponent },
-      { path: "messages", component: MessagesComponent },
+      {
+        path: "",
+        runGuardsAndResolvers: "always",
+        canActivate: [AuthGuard],
+        children: [
+          { path: "members", component: MemberListComponent },
+          { path: "members/:id", component: MemberDetailComponent },
+          { path: "lists", component: ListsComponent },
+          { path: "messages", component: MessagesComponent },
+        ],
+      },
       { path: "**", component: HomeComponent, pathMatch: "full" },
     ]),
     BrowserAnimationsModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
