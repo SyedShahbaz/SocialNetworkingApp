@@ -13,6 +13,9 @@ namespace SocialNetworkingApp.Data
         {
         }
 
+        // We have not inculded PHOTOS here.
+        // Relationship in User and Photos will automatically create the PHOTOS table
+        // Defining here photos.. Will cause "Object cycle Error" while running migration.
         public DbSet<AppUser> Users { get; set; }
     }
 }

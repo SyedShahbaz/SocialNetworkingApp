@@ -31,6 +31,7 @@
     <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.0.7" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.9" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -55,6 +56,8 @@
     <None Remove="Extensions\" />
     <None Remove="Errors\" />
     <None Remove="Middleware\" />
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="Helpers\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -66,6 +69,7 @@
     <Folder Include="Extensions\" />
     <Folder Include="Errors\" />
     <Folder Include="Middleware\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->

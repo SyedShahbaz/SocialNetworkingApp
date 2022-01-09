@@ -1,37 +1,46 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SocialNetworkingApp.Data;
+using SocialNetworkingApp.DTOs;
 using SocialNetworkingApp.Entities;
+using SocialNetworkingApp.Interfaces;
 
 namespace SocialNetworkingApp.Controllers
 {
+    [Authorize]
     public class UsersController : BaseApiController
     {
-        private readonly DataContext _context;
+        private readonly IUserRepository _repository;
+        private readonly IMapper _mapper;
 
-        public UsersController(DataContext context)
+        public UsersController(IUserRepository repository, IMapper mapper)
         {
-            _context = context;
+            _repository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        [AllowAnonymous]
-        
-        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
         {
             // Always make database call Asynchronous. GuideLine.
-            return await _context.Users.ToListAsync();
+            var users = await _repository.GetMembersAsync();
+            return Ok(users);
         }
 
-        [Authorize]
         //api/users/1
-        [HttpGet("{id}")]
-        public async Task<ActionResult<AppUser>> GetUser(int id)
+        [HttpGet("{username}")]
+        public async Task<ActionResult<MemberDto>> GetUser(string username)
         {
-            return await _context.Users.FindAsync(id);
+            // Here we Select all the properties from the user table and later use DTO to convert them into
+            // MembersDto. Would be better if we can select what we need from the Table.
+            // User Projection.. Would be efficient.
+
+            // Use in User Repository.
+            // .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+            return await _repository.GetMemberAsync(username);
+
         }
     }
 }
