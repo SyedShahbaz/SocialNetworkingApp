@@ -1,16 +1,21 @@
 ﻿<Properties StartupConfiguration="{0000FE14-75CB-408C-BD1C-FCA0C417DAA5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SocialNetworkingApp/Helpers/AutoMapperProfiles.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SocialNetworkingApp/Data/UserSeedData.json">
     <Files>
-      <File FileName="SocialNetworkingApp/Helpers/AutoMapperProfiles.cs" Line="1" Column="1" />
+      <File FileName="SocialNetworkingApp/Helpers/AutoMapperProfiles.cs" Line="22" Column="1" />
+      <File FileName="SocialNetworkingApp/Controllers/BuggyController.cs" Line="42" Column="1" />
+      <File FileName="SocialNetworkingApp/Data/Seed.cs" Line="1" Column="1" />
+      <File FileName="SocialNetworkingApp/Data/UserSeedData.json" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SocialNetworkingApp" expanded="True">
             <Node name="SocialNetworkingApp" expanded="True">
-              <Node name="Helpers" expanded="True">
-                <Node name="AutoMapperProfiles.cs" selected="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True">
+                <Node name="UserSeedData.json" selected="True" />
               </Node>
+              <Node name="Helpers" expanded="True" />
             </Node>
           </Node>
         </State>

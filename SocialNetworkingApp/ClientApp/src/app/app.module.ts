@@ -18,11 +18,17 @@ import { MessagesComponent } from "./messages/messages.component";
 import { MemberListComponent } from "./members/member-list/member-list.component";
 import { MemberDetailComponent } from "./members/member-detail/member-detail.component";
 import { AuthGuard } from "./_guards/auth.guard";
-import { SharedModule } from "./_modules/shared.module";
 import { TestErrorsComponent } from "./errors/test-errors/test-errors.component";
 import { ErrorInterceptor } from "./_interceptors/error.interceptor";
 import { NotFoundComponent } from "./errors/not-found/not-found.component";
 import { ServerErrorComponent } from "./errors/server-error/server-error.component";
+import { ToastrModule } from "ngx-toastr";
+import { CommonModule } from "@angular/common";
+import { MemberCardComponent } from "./members/member-card/member-card.component";
+import { JwtInterceptor } from "./_interceptors/jwt.interceptor";
+
+import { TabsModule } from "ngx-bootstrap/tabs";
+import { NgxGalleryModule } from "@kolkov/ngx-gallery";
 
 @NgModule({
   declarations: [
@@ -36,13 +42,23 @@ import { ServerErrorComponent } from "./errors/server-error/server-error.compone
     MessagesComponent,
     ServerErrorComponent,
     TestErrorsComponent,
+    MemberListComponent,
+    NotFoundComponent,
+    MemberDetailComponent,
+    MemberCardComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    CommonModule,
     FormsModule,
+    TabsModule.forRoot(),
     MatMenuModule,
     MatIconModule,
+    NgxGalleryModule,
+    ToastrModule.forRoot({
+      positionClass: "toast-bottom-right",
+    }),
     RouterModule.forRoot([
       { path: "", component: HomeComponent, pathMatch: "full" },
       { path: "counter", component: CounterComponent },
@@ -53,7 +69,7 @@ import { ServerErrorComponent } from "./errors/server-error/server-error.compone
         canActivate: [AuthGuard],
         children: [
           { path: "members", component: MemberListComponent },
-          { path: "members/:id", component: MemberDetailComponent },
+          { path: "members/:username", component: MemberDetailComponent },
           { path: "lists", component: ListsComponent },
           { path: "messages", component: MessagesComponent },
         ],
@@ -64,10 +80,10 @@ import { ServerErrorComponent } from "./errors/server-error/server-error.compone
       { path: "**", component: HomeComponent, pathMatch: "full" },
     ]),
     BrowserAnimationsModule,
-    SharedModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
