@@ -29,6 +29,8 @@ import { JwtInterceptor } from "./_interceptors/jwt.interceptor";
 
 import { TabsModule } from "ngx-bootstrap/tabs";
 import { NgxGalleryModule } from "@kolkov/ngx-gallery";
+import { MemberEditComponent } from "./members/member-edit/member-edit.component";
+import { PreventUnsavedChangesGuard } from "./_guards/prevent-unsaved-changes.guard";
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { NgxGalleryModule } from "@kolkov/ngx-gallery";
     NotFoundComponent,
     MemberDetailComponent,
     MemberCardComponent,
+    MemberEditComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +73,7 @@ import { NgxGalleryModule } from "@kolkov/ngx-gallery";
         children: [
           { path: "members", component: MemberListComponent },
           { path: "members/:username", component: MemberDetailComponent },
+          { path: "member/edit", component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},
           { path: "lists", component: ListsComponent },
           { path: "messages", component: MessagesComponent },
         ],

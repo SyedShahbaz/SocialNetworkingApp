@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { Observable } from "rxjs";
-import { take } from "rxjs/operators";
 import { User } from "../_models/user";
 import { AccountService } from "../_services/account.service";
 
@@ -26,7 +25,9 @@ export class NavMenuComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.accountService.currentUser;
     const user: any = JSON.parse(localStorage.getItem("user"));
-    console.log("====> " + user);
+    if (user) {
+      console.log("====> " + user.userName);
+    }
   }
 
   collapse() {

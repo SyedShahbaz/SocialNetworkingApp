@@ -13,14 +13,14 @@ export class AccountService {
 
   // Special Observable. Kind of a buffer object
   // Stores the values here and emit when subscribed.
-  private currentUserSource = new ReplaySubject<User>(1);
+  private currentUserSource = new ReplaySubject<any>(1);
   currentUser = this.currentUserSource.asObservable();
 
   constructor(private http: HttpClient) {}
 
   login(model: any) {
     return this.http.post(this.baseUrl + "account/login", model).pipe(
-      map((response: User) => {
+      map((response: any) => {
         const user = response;
         if (user) {
           localStorage.setItem("user", JSON.stringify(user));
@@ -44,7 +44,7 @@ export class AccountService {
     );
   }
 
-  setCurrentUser(user: User) {
+  setCurrentUser(user: any) {
     this.currentUserSource.next(user);
   }
 
