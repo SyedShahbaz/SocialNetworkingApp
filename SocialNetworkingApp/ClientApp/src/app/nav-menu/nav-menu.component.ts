@@ -27,6 +27,7 @@ export class NavMenuComponent implements OnInit {
     const user: any = JSON.parse(localStorage.getItem("user"));
     if (user) {
       console.log("====> " + user.userName);
+      console.log("====> " + user.photoUrl);
     }
   }
 

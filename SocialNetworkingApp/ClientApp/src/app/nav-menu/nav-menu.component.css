@@ -17,6 +17,8 @@ html {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
-/* .login-div {
-  margin-left: 18.75rem;
-} */
+img{
+  max-height: 50px;
+  border: 2px solid #fff;
+  display: inline;
+}

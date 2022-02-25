@@ -125,14 +125,17 @@
       dropdown
       *ngIf="accountService.currentUser | async as userT"
     >
+
+      <img src="{{userT.photoUrl}}" alt="">
+
       <button
-        class="btn btn-outline-success my-2 my-sm-0"
+        class="btn btn-outline-success my-2 my-sm-0 ml-2"
         [matMenuTriggerFor]="menu"
       >
         <mat-icon aria-hidden="false" aria-label="Example home icon"
           >home</mat-icon
         >
-        Welcome {{ userT.username }}
+        Welcome {{ userT.userName }}
       </button>
       <mat-menu #menu="matMenu">
         <button routerLink="/member/edit" mat-menu-item>Edit Profile</button>
