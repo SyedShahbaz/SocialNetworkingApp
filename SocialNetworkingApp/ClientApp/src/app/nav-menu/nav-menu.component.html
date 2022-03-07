@@ -126,7 +126,7 @@
       *ngIf="accountService.currentUser | async as userT"
     >
 
-      <img src="{{userT.photoUrl}}" alt="">
+      <img src="{{userT.photoUrl || './assets/user.png'}}" alt="">
 
       <button
         class="btn btn-outline-success my-2 my-sm-0 ml-2"
