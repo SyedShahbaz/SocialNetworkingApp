@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using SocialNetworkingApp.DTOs;
 using SocialNetworkingApp.Entities;
 using SocialNetworkingApp.Extensions;
+using SocialNetworkingApp.Helpers;
 using SocialNetworkingApp.Interfaces;
 
 namespace SocialNetworkingApp.Controllers
@@ -27,10 +28,12 @@ namespace SocialNetworkingApp.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery]UserPrams userPrams)
         {
             // Always make database call Asynchronous. GuideLine.
-            var users = await _repository.GetMembersAsync();
+            var users = await _repository.GetMembersAsync(userPrams);
+            Response.AddPaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
+
             return Ok(users);
         }
 

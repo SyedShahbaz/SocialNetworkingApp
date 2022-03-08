@@ -33,10 +33,12 @@ import { MemberEditComponent } from "./members/member-edit/member-edit.component
 import { PreventUnsavedChangesGuard } from "./_guards/prevent-unsaved-changes.guard";
 import { PhotoEditorComponent } from "./members/photo-editor/photo-editor.component";
 
-import {FileUploadModule} from 'ng2-file-upload'
+import { FileUploadModule } from 'ng2-file-upload'
 import { TextInputComponent } from "./_forms/text-input/text-input.component";
 import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { DateInputComponent } from "./_forms/date-input/date-input.component";
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { DateInputComponent } from "./_forms/date-input/date-input.component";
     NgxGalleryModule,
     ReactiveFormsModule,
     FileUploadModule,
+    MatProgressSpinnerModule,
     BsDatepickerModule.forRoot(),
+    PaginationModule.forRoot(),
     ToastrModule.forRoot({
       positionClass: "toast-bottom-right",
     }),

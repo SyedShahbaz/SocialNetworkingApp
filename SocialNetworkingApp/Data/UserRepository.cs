@@ -6,6 +6,7 @@ using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using SocialNetworkingApp.DTOs;
 using SocialNetworkingApp.Entities;
+using SocialNetworkingApp.Helpers;
 using SocialNetworkingApp.Interfaces;
 
 namespace SocialNetworkingApp.Data
@@ -51,9 +52,11 @@ namespace SocialNetworkingApp.Data
             _context.Entry(user).State = EntityState.Modified;
         }
 
-        public async Task<IEnumerable<MemberDto>> GetMembersAsync()
+        public async Task<PagedList<MemberDto>> GetMembersAsync(UserPrams userPrams)
         {
-            return await _context.Users.ProjectTo<MemberDto>(_mapper.ConfigurationProvider).ToListAsync();
+            // Expression Tree..
+            var query = _context.Users.ProjectTo<MemberDto>(_mapper.ConfigurationProvider).AsNoTracking();
+            return await PagedList<MemberDto>.CreateAsync(query, userPrams.PageNumber, userPrams.PageSize); 
         }
 
         public async Task<MemberDto> GetMemberAsync(string username)

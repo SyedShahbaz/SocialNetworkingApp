@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using SocialNetworkingApp.DTOs;
 using SocialNetworkingApp.Entities;
+using SocialNetworkingApp.Helpers;
 
 namespace SocialNetworkingApp.Interfaces
 {
@@ -12,7 +13,7 @@ namespace SocialNetworkingApp.Interfaces
         Task<IEnumerable<AppUser>> GetUsersAsync();
         Task<AppUser> GetUserByIdAsync(int id);
         Task<AppUser> GetUserByUsernameAsync(string username);
-        Task<IEnumerable<MemberDto>> GetMembersAsync();
+        Task<PagedList<MemberDto>> GetMembersAsync(UserPrams userPrams);
         Task<MemberDto> GetMemberAsync(string username);
     }
 }
