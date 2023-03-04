@@ -34,6 +34,7 @@
     "ng2-file-upload": "^1.4.0",
     "ngx-bootstrap": "^3.0.1",
     "ngx-spinner": "^9.0.0",
+    "ngx-timeago": "^2.0.0",
     "ngx-toastr": "^11.3.3",
     "node-sass": "^5.0.0",
     "oidc-client": "^1.11.3",

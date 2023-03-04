@@ -5,6 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatIconModule } from "@angular/material/icon";
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
@@ -39,6 +40,7 @@ import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { DateInputComponent } from "./_forms/date-input/date-input.component";
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {TimeagoModule} from "ngx-timeago";
 
 @NgModule({
   declarations: [
@@ -74,6 +76,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     FileUploadModule,
     MatProgressSpinnerModule,
     BsDatepickerModule.forRoot(),
+    ButtonsModule.forRoot(),
+    TimeagoModule.forRoot(),
     PaginationModule.forRoot(),
     ToastrModule.forRoot({
       positionClass: "toast-bottom-right",

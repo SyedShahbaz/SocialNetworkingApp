@@ -30,6 +30,14 @@ namespace SocialNetworkingApp.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery]UserPrams userPrams)
         {
+            var user = await _repository.GetUserByUsernameAsync(User.GetUsername());
+            userPrams.CurrentUserName = user.UserName;
+
+            if (string.IsNullOrEmpty(userPrams.Gender))
+            {
+                userPrams.Gender = user.Gender == "male" ? "female" : "male";
+            }
+
             // Always make database call Asynchronous. GuideLine.
             var users = await _repository.GetMembersAsync(userPrams);
             Response.AddPaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
