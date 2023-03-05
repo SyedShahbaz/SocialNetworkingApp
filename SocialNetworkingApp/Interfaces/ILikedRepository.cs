@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using SocialNetworkingApp.DTOs;
 using SocialNetworkingApp.Entities;
+using SocialNetworkingApp.Helpers;
 
 namespace SocialNetworkingApp.Interfaces
 {
@@ -11,6 +12,6 @@ namespace SocialNetworkingApp.Interfaces
         Task<AppUser> GetUserWithLikes(int userId);
     
         // Predicate to check if we want to get users that they have liked or liked By.
-        Task<IEnumerable<LikeDto>> GetUserLikes(string predicate, int userId);
+        Task<PagedList<LikeDto>> GetUserLikes(LikesParams likesParams);
     }
 }

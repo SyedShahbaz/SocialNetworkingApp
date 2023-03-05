@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using SocialNetworkingApp.DTOs;
 using SocialNetworkingApp.Entities;
 using SocialNetworkingApp.Extensions;
+using SocialNetworkingApp.Helpers;
 using SocialNetworkingApp.Interfaces;
 
 namespace SocialNetworkingApp.Data
@@ -30,25 +31,25 @@ namespace SocialNetworkingApp.Data
                 .FirstOrDefaultAsync(x => x.Id == userId);
         }
 
-        public async Task<IEnumerable<LikeDto>> GetUserLikes(string predicate, int userId)
+        public async Task<PagedList<LikeDto>> GetUserLikes(LikesParams likesParams)
         {
             // Not executed yet
             var users = _dataContext.Users.OrderBy(u => u.UserName).AsQueryable();
             var likes = _dataContext.Liked.AsQueryable();
 
-            switch (predicate)
+            switch (likesParams.Predicate)
             {
                 case "liked":
-                    likes = likes.Where(like => like.SourceUserId == userId);
+                    likes = likes.Where(like => like.SourceUserId == likesParams.UserId);
                     users = likes.Select(like => like.TargetUser);
                     break;
                 case "likedBy":
-                    likes = likes.Where(like => like.TargetUserId == userId);
+                    likes = likes.Where(like => like.TargetUserId == likesParams.UserId);
                     users = likes.Select(like => like.SourceUser);
                     break;
             }
 
-            return await users.Select(user => new LikeDto
+            var likedUsers =  users.Select(user => new LikeDto
             {
                 Username = user.UserName,
                 KnownAs = user.KnownAs,
@@ -56,7 +57,9 @@ namespace SocialNetworkingApp.Data
                 PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain).Url,
                 City = user.City,
                 Id = user.Id
-            }).ToListAsync();
+            });
+
+            return await PagedList<LikeDto>.CreateAsync(likedUsers, likesParams.PageNumber, likesParams.PageSize);
         }
     }
 }

@@ -65,7 +65,7 @@ export class MembersService {
 
   private getPaginatedResults<T>(url, params) {
     const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
-    return this.http.get<T>(this.baseUrl + "users", { observe: 'response', params }).pipe(
+    return this.http.get<T>(url, { observe: 'response', params }).pipe(
       map(response => {
 
         paginatedResult.result = response.body;
@@ -114,10 +114,11 @@ export class MembersService {
     return this.http.post(this.baseUrl + 'likes/' + username, {});
   }
 
-  getLikes(predicate: string){
-    return this.http.get(this.baseUrl + 'likes?predicate=' + predicate);
+  getLikes(predicate: string, pageNumber: number, pageSize: number){
+    let params = this.getPaginationHeaders(pageNumber, pageSize);
+
+    params = params.append('predicate', predicate);
+    return this.getPaginatedResults<Member[]>(this.baseUrl + 'likes', params);
   }
-
-
 
 }

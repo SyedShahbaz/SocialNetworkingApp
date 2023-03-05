@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SocialNetworkingApp.DTOs;
 using SocialNetworkingApp.Entities;
 using SocialNetworkingApp.Extensions;
+using SocialNetworkingApp.Helpers;
 using SocialNetworkingApp.Interfaces;
 
 namespace SocialNetworkingApp.Controllers
@@ -47,10 +48,14 @@ namespace SocialNetworkingApp.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<LikeDto>>> GetUserLikes(string predicate)
+        public async Task<ActionResult<PagedList<LikeDto>>> GetUserLikes([FromQuery]LikesParams likesParams)
         {
-            var user = await _likedRepository.GetUserLikes(predicate, User.GetUserId());
-            return Ok(user);
+            likesParams.UserId = User.GetUserId();
+            var users = await _likedRepository.GetUserLikes(likesParams);
+
+            Response.AddPaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
+
+            return Ok(users);
         }
     }
 }
