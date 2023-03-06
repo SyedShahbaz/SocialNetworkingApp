@@ -1,5 +1,10 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 using SocialNetworkingApp.DTOs;
 using SocialNetworkingApp.Entities;
 using SocialNetworkingApp.Helpers;
@@ -10,10 +15,12 @@ namespace SocialNetworkingApp.Data
     public class MessageRepository : IMessageRepository
     {
         private readonly DataContext _dataContext;
+        private readonly IMapper _mapper;
 
-        public MessageRepository(DataContext dataContext)
+        public MessageRepository(DataContext dataContext, IMapper mapper)
         {
             _dataContext = dataContext;
+            _mapper = mapper;
         }
 
         public void AddMessage(Message message)
@@ -31,14 +38,53 @@ namespace SocialNetworkingApp.Data
             return await _dataContext.Messages.FindAsync(id);
         }
 
-        public Task<PagedList<MessageDto>> GetMessagesForUser()
+        public async Task<PagedList<MessageDto>> GetMessagesForUser(MessageParams messageParams)
         {
-            throw new System.NotImplementedException();
+            var query = _dataContext.Messages
+                .OrderByDescending(x => x.MessageSent)
+                .AsQueryable();
+
+            query = messageParams.Container switch
+            {
+                "Inbox" => query.Where(u => u.RecipientUsername == messageParams.Username),
+                "Outbox" => query.Where(u => u.SenderUsername == messageParams.Username),
+                _ => query.Where(u => u.RecipientUsername == messageParams.Username && u.DateRead == null)
+            };
+
+            var messages = query.ProjectTo<MessageDto>(_mapper.ConfigurationProvider);
+
+            return await PagedList<MessageDto>
+                .CreateAsync(messages, messageParams.PageNumber, messageParams.PageSize);
+
         }
 
-        public Task<IEnumerable<MessageDto>> GetMessageThread(int currentUserId, int recipientId)
+        public async Task<IEnumerable<MessageDto>> GetMessageThread(string currentUserName, string recipientUserName)
         {
-            throw new System.NotImplementedException();
+            var messages = await _dataContext.Messages
+                .Include(u => u.Sender).ThenInclude(p => p.Photos)
+                .Include(u => u.Recipient).ThenInclude(p => p.Photos)
+                .Where(
+                    m => m.RecipientUsername == currentUserName &&
+                    m.SenderUsername == recipientUserName ||
+                    m.RecipientUsername == recipientUserName && 
+                    m.SenderUsername == currentUserName
+                )
+                .OrderByDescending(m => m.MessageSent)
+                .ToListAsync();
+
+            var unreadMessages = messages.Where(m => m.DateRead == null && 
+                                                     m.RecipientUsername == currentUserName)
+                                                    .ToList();
+
+            if (unreadMessages.Any())
+            {
+                foreach (var message in unreadMessages)
+                {
+                    message.DateRead = DateTime.UtcNow;
+                }
+                await _dataContext.SaveChangesAsync();
+            }
+            return _mapper.Map<IEnumerable<MessageDto>>(messages);
         }
 
         public async Task<bool> SaveAllAsync()
