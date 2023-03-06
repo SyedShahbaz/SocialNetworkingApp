@@ -41,6 +41,7 @@ import { DateInputComponent } from "./_forms/date-input/date-input.component";
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {TimeagoModule} from "ngx-timeago";
+import { MemberMessagesComponent } from "./members/member-messages/member-messages.component";
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import {TimeagoModule} from "ngx-timeago";
     MemberEditComponent,
     PhotoEditorComponent,
     TextInputComponent,
-    DateInputComponent
+    DateInputComponent,
+    MemberMessagesComponent
   ],
   imports: [
     BrowserModule,
