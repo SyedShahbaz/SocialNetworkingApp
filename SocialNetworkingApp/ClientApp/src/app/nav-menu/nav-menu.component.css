@@ -17,6 +17,19 @@ html {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
+.welcome-button {
+  color: white;
+  border: none;
+}
+
+.welcome-button :hover {
+  color: white !important;
+}
+
+
+
+
+
 img{
   max-height: 50px;
   border: 2px solid #fff;
