@@ -1,7 +1,7 @@
 <div class="mb-4 d-flex" style="margin-top: 5rem;">
-  <div class="btn-group" name="container">
+  <div name="container">
     <button
-      class="btn btn-primary"
+      class="btn btn-info"
       btnRadio="Unread"
       [(ngModel)] = "container"
       (click) = "loadMessages()">
@@ -9,7 +9,7 @@
     </button>
 
     <button
-      class="btn btn-primary"
+      class="btn btn-info ml-1"
       btnRadio="Inbox"
       [(ngModel)] = "container"
       (click) = "loadMessages()">
@@ -17,7 +17,7 @@
     </button>
 
     <button
-      class="btn btn-primary"
+      class="btn btn-info ml-1"
       btnRadio="Outbox"
       [(ngModel)] = "container"
       (click) = "loadMessages()">
@@ -88,8 +88,8 @@
       </td>
       <td style="height: 50px;" class="align-middle">{{message.messageSent | timeago}}</td>
       <td style="height: 50px;" class="align-middle">
-        <button class="btn btn-danger">
-          Delete
+        <button class="btn">
+          <i class="trash-btn fa fa-trash-o fa-2x" aria-hidden="true"></i>
         </button>
       </td>
     </tr>

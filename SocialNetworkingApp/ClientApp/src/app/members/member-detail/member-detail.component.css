@@ -34,3 +34,15 @@
 }
 
 .ngx-gallery { display: inline-block; margin-bottom: 20px; }
+
+.action-btn {
+  color: #17a2b8;
+}
+
+/*.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #17a2b8 !important;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}*/

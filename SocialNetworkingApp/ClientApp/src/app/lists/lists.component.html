@@ -4,19 +4,19 @@
 
 <div class="container mt-3">
   <div class="d-flex">
-    <div class="btn-group" name="predicate">
+    <div name="predicate">
       <button
-        class="btn btn-primary"
+        class="btn btn-info"
         btnRadio="liked"
         [(ngModel)]="predicate"
-        (click)="loadLikes()">Members i like
+        (click)="loadLikes()">Members I Like
       </button>
 
       <button
-        class="btn btn-primary"
+        class="btn btn-info ml-1"
         btnRadio="likedBy"
         [(ngModel)]="predicate"
-        (click)="loadLikes()">Members who liked me
+        (click)="loadLikes()">Members Who Liked Me
       </button>
     </div>
   </div>

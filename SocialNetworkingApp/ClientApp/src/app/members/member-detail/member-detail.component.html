@@ -73,26 +73,26 @@
           <i class="class fa fa-user-circle text-success"></i> Online now
         </div>-->
         <div>
-          <strong>Location:</strong>
+          <strong>Location</strong>
           <p>{{member.city}}, {{member.country}}</p>
         </div>
         <div>
-          <strong>Age:</strong>
+          <strong>Age</strong>
           <p>{{member.age}}</p>
         </div>
         <div>
-          <strong>Last active:</strong>
+          <strong>Last Active</strong>
           <p>{{member.lastActive | timeago}}</p>
         </div>
         <div>
-          <strong>Member since:</strong>
+          <strong>Member Since</strong>
           <p>{{member.created | date: 'dd MMM yyyy'}}</p>
         </div>
       </div>
       <div class="card-footer">
-        <div class="btn-group d-flex">
-          <button class="btn btn-primary">Like</button>
-          <button class="btn btn-success">Messages</button>
+        <div class="d-flex justify-content-center">
+          <button class="btn"><i class="fa fa-thumbs-up fa-3x action-btn" aria-hidden="true"></i></button>
+          <button class="btn ml-1"><i class="fa fa-envelope fa-3x action-btn" aria-hidden="true"></i></button>
         </div>
       </div>
     </div>
