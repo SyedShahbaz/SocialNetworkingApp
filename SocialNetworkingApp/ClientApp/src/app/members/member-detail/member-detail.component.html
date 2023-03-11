@@ -59,10 +59,6 @@
 </div>
 -->
 
-
-
-
-
 <div class="row">
   <div class="col-4">
     <div class="card">
@@ -92,7 +88,7 @@
       <div class="card-footer">
         <div class="d-flex justify-content-center">
           <button class="btn"><i class="fa fa-thumbs-up fa-3x action-btn" aria-hidden="true"></i></button>
-          <button class="btn ml-1"><i class="fa fa-envelope fa-3x action-btn" aria-hidden="true"></i></button>
+          <button class="btn ml-1" routerLink="/members/{{member.username}}" ><i class="fa fa-envelope fa-3x action-btn" aria-hidden="true"></i></button>
         </div>
       </div>
     </div>
@@ -114,7 +110,7 @@
       <tab heading="Photos" >
         <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
       </tab>
-      <tab heading="Messages"  >
+      <tab heading="Messages">
         <app-member-messages [username]="member.username"></app-member-messages>
       </tab>
     </tabset>
