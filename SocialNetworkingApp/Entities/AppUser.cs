@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
 using SocialNetworkingApp.Extensions;
 
 namespace SocialNetworkingApp.Entities
 {
-    public class AppUser
+    //IdentityUser<int> <int> means Id needs to be int.
+    public class AppUser : IdentityUser<int>
     {
-        public int Id { get; set; }
-        public string UserName { get; set; }
-        public byte[] PasswordHash { get; set; }
-        public byte[] PasswordSalt { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string KnownAs { get; set; }
         public DateTime Created { get; set; } = DateTime.Now;
@@ -38,6 +36,9 @@ namespace SocialNetworkingApp.Entities
 
         public List<Message> MessagesSent { get; set; }
         public List<Message> MessagesReceived { get; set; }
+
+        // Navigation Property to join table. Many to Many.
+        public ICollection<AppUserRole> UserRoles { get; set; }
         
     }
 }
