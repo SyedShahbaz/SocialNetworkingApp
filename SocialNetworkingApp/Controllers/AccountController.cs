@@ -50,9 +50,12 @@ namespace SocialNetworkingApp.Controllers
 
             if (!result.Succeeded) return BadRequest(result.Errors);
 
+            var roleResults = await _userManager.AddToRoleAsync(user, "Member");
+            if (!roleResults.Succeeded) return BadRequest(result.Errors);
+            
             return new UserDto {
                  UserName = user.UserName,
-                 Token = _tokenService.CreateToken(user),
+                 Token = await _tokenService.CreateToken(user),
                  KnownAs = user.KnownAs,
                  Gender = user.Gender
             };
@@ -74,7 +77,7 @@ namespace SocialNetworkingApp.Controllers
             return new UserDto
             {
                 UserName = user.UserName,
-                Token = _tokenService.CreateToken(user),
+                Token = await _tokenService.CreateToken(user),
                 KnownAs = user.KnownAs,
                 PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
                 Gender = user.Gender

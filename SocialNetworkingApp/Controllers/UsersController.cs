@@ -26,7 +26,7 @@ namespace SocialNetworkingApp.Controllers
             _mapper = mapper;
             _photoService = photoService;
         }
-
+        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery]UserPrams userPrams)
         {
