@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SocialNetworkingApp.Extensions;
 using SocialNetworkingApp.Middleware;
+using SocialNetworkingApp.SignalR;
 
 namespace SocialNetworkingApp
 {
@@ -63,7 +64,7 @@ namespace SocialNetworkingApp
             app.UseRouting();
 
             // Add Cors in between Routing and Authorization
-            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod());
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowCredentials());
 
 
             //app.UseAuthentication() must be above UseAuthentication and UseCors must be before these two
@@ -76,6 +77,7 @@ namespace SocialNetworkingApp
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+                endpoints.MapHub<PresenceHub>("hubs/presence");
             });
 
             app.UseSpa(spa =>

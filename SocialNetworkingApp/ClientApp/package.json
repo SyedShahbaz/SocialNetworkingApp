@@ -24,6 +24,7 @@
     "@angular/platform-server": "8.2.12",
     "@angular/router": "8.2.12",
     "@kolkov/ngx-gallery": "^1.2.4",
+    "@microsoft/signalr": "^7.0.5",
     "@nguniversal/module-map-ngfactory-loader": "8.1.1",
     "bootstrap": "^4.6.0",
     "bootswatch": "^5.1.3",
