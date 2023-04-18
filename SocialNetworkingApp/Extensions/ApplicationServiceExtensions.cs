@@ -5,6 +5,7 @@ using SocialNetworkingApp.Data;
 using SocialNetworkingApp.Helpers;
 using SocialNetworkingApp.Interfaces;
 using SocialNetworkingApp.Services;
+using SocialNetworkingApp.SignalR;
 
 namespace SocialNetworkingApp.Extensions
 {
@@ -23,6 +24,8 @@ namespace SocialNetworkingApp.Extensions
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMessageRepository, MessageRepository>();
             services.AddSignalR();
+            services.AddSingleton<PresenceTracker>();
+            
             // Need to specify the assembly name where the Mapping profile resides.
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(options =>

@@ -78,6 +78,7 @@ namespace SocialNetworkingApp
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
                 endpoints.MapHub<PresenceHub>("hubs/presence");
+                endpoints.MapHub<MessageHub>("hubs/message");
             });
 
             app.UseSpa(spa =>

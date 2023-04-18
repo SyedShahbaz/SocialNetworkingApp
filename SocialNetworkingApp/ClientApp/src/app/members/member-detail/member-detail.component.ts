@@ -8,6 +8,7 @@ import {
 import { Member } from "src/app/_models/member";
 import { MembersService } from "src/app/_services/members.service";
 import {TabsetComponent} from "ngx-bootstrap";
+import {PresenceService} from "../../_services/presence.service";
 
 @Component({
   selector: "app-member-detail",
@@ -22,7 +23,8 @@ export class MemberDetailComponent implements OnInit {
 
   constructor(
     private memberService: MembersService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public presenceService: PresenceService
   ) {}
 
   ngOnInit() {
